@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0db52d11777b464d98d98bd5b858208a" Name="Diagram1">
+        <EntityTypeShape EntityType="TSTModel.TST_Departments" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_Employees" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_EmployeeStatuses" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_SupportTickets" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_TechNotes" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_TicketPriorities" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSTModel.TST_TicketStatuses" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="TSTModel.FK_TST_Employees_TST_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_Employees_TST_EmployeeStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_SupportTickets_TST_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_SupportTickets_TST_Employees1" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_SupportTickets_TST_Employees2" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_TechNotes_TST_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_SupportTickets_TST_TicketPriorities" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_SupportTickets_TST_TicketStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="TSTModel.FK_TST_TechNotes_TST_SupportTickets" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
