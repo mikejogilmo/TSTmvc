@@ -161,13 +161,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DepartmentController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\EmployeeStatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\SupportTicketsController.cs" />
+    <Compile Include="Controllers\TST_DepartmentsController.cs" />
+    <Compile Include="Controllers\TST_EmployeesController.cs" />
+    <Compile Include="Controllers\TST_EmployeeStatusesController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -356,12 +355,24 @@
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\TST_Departments\Create.cshtml" />
+    <Content Include="Views\TST_Departments\Delete.cshtml" />
+    <Content Include="Views\TST_Departments\Details.cshtml" />
+    <Content Include="Views\TST_Departments\Edit.cshtml" />
+    <Content Include="Views\TST_Departments\Index.cshtml" />
+    <Content Include="Views\TST_EmployeeStatuses\Create.cshtml" />
+    <Content Include="Views\TST_EmployeeStatuses\Delete.cshtml" />
+    <Content Include="Views\TST_EmployeeStatuses\Details.cshtml" />
+    <Content Include="Views\TST_EmployeeStatuses\Edit.cshtml" />
+    <Content Include="Views\TST_EmployeeStatuses\Index.cshtml" />
+    <Content Include="Views\TST_Employees\Create.cshtml" />
+    <Content Include="Views\TST_Employees\Delete.cshtml" />
+    <Content Include="Views\TST_Employees\Details.cshtml" />
+    <Content Include="Views\TST_Employees\Edit.cshtml" />
+    <Content Include="Views\TST_Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Department\" />
-    <Folder Include="Views\EmployeeStatus\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -372,6 +383,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TST.Data.EF\TST.Data.EF.csproj">
+      <Project>{d84a571a-35a4-4e0e-8810-6f1ac50eee24}</Project>
+      <Name>TST.Data.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TSTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TSTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TST_Departments">
           <Key>
-            <PropertyRef Name="DeparmentId" />
+            <PropertyRef Name="DepartmentId" />
           </Key>
-          <Property Name="DeparmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -92,7 +92,7 @@
           <End Role="TST_Employees" Type="Self.TST_Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TST_Departments">
-              <PropertyRef Name="DeparmentId" />
+              <PropertyRef Name="DepartmentId" />
             </Principal>
             <Dependent Role="TST_Employees">
               <PropertyRef Name="DepartmentId" />
@@ -240,21 +240,10 @@
             <End Role="TST_TechNotes" EntitySet="TST_TechNotes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TSTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TST_Departments">
-          <Key>
-            <PropertyRef Name="DeparmentId" />
-          </Key>
-          <Property Name="DeparmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TST_Employees" Relationship="Self.FK_TST_Employees_TST_Departments" FromRole="TST_Departments" ToRole="TST_Employees" />
-        </EntityType>
         <EntityType Name="TST_Employees">
           <Key>
             <PropertyRef Name="EmployeeId" />
@@ -281,12 +270,12 @@
           <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HireDate" Type="DateTime" Precision="3" />
           <Property Name="TerminationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TST_Departments" Relationship="Self.FK_TST_Employees_TST_Departments" FromRole="TST_Employees" ToRole="TST_Departments" />
           <NavigationProperty Name="TST_EmployeeStatuses" Relationship="Self.FK_TST_Employees_TST_EmployeeStatuses" FromRole="TST_Employees" ToRole="TST_EmployeeStatuses" />
           <NavigationProperty Name="TST_SupportTickets" Relationship="Self.FK_TST_SupportTickets_TST_Employees" FromRole="TST_Employees" ToRole="TST_SupportTickets" />
           <NavigationProperty Name="TST_SupportTickets1" Relationship="Self.FK_TST_SupportTickets_TST_Employees1" FromRole="TST_Employees" ToRole="TST_SupportTickets" />
           <NavigationProperty Name="TST_SupportTickets2" Relationship="Self.FK_TST_SupportTickets_TST_Employees2" FromRole="TST_Employees" ToRole="TST_SupportTickets" />
           <NavigationProperty Name="TST_TechNotes" Relationship="Self.FK_TST_TechNotes_TST_Employees" FromRole="TST_Employees" ToRole="TST_TechNotes" />
+          <NavigationProperty Name="TST_Departments" Relationship="TSTModel.FK_TST_Employees_TST_Departments" FromRole="TST_Employees" ToRole="TST_Departments" />
         </EntityType>
         <EntityType Name="TST_EmployeeStatuses">
           <Key>
@@ -345,18 +334,6 @@
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TST_SupportTickets" Relationship="Self.FK_TST_SupportTickets_TST_TicketStatuses" FromRole="TST_TicketStatuses" ToRole="TST_SupportTickets" />
         </EntityType>
-        <Association Name="FK_TST_Employees_TST_Departments">
-          <End Role="TST_Departments" Type="Self.TST_Departments" Multiplicity="0..1" />
-          <End Role="TST_Employees" Type="Self.TST_Employees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TST_Departments">
-              <PropertyRef Name="DeparmentId" />
-            </Principal>
-            <Dependent Role="TST_Employees">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TST_Employees_TST_EmployeeStatuses">
           <End Role="TST_EmployeeStatuses" Type="Self.TST_EmployeeStatuses" Multiplicity="1" />
           <End Role="TST_Employees" Type="Self.TST_Employees" Multiplicity="*" />
@@ -454,17 +431,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TSTEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TST_Departments" EntityType="Self.TST_Departments" />
           <EntitySet Name="TST_Employees" EntityType="Self.TST_Employees" />
           <EntitySet Name="TST_EmployeeStatuses" EntityType="Self.TST_EmployeeStatuses" />
           <EntitySet Name="TST_SupportTickets" EntityType="Self.TST_SupportTickets" />
           <EntitySet Name="TST_TechNotes" EntityType="Self.TST_TechNotes" />
           <EntitySet Name="TST_TicketPriorities" EntityType="Self.TST_TicketPriorities" />
           <EntitySet Name="TST_TicketStatuses" EntityType="Self.TST_TicketStatuses" />
-          <AssociationSet Name="FK_TST_Employees_TST_Departments" Association="Self.FK_TST_Employees_TST_Departments">
-            <End Role="TST_Departments" EntitySet="TST_Departments" />
-            <End Role="TST_Employees" EntitySet="TST_Employees" />
-          </AssociationSet>
           <AssociationSet Name="FK_TST_Employees_TST_EmployeeStatuses" Association="Self.FK_TST_Employees_TST_EmployeeStatuses">
             <End Role="TST_EmployeeStatuses" EntitySet="TST_EmployeeStatuses" />
             <End Role="TST_Employees" EntitySet="TST_Employees" />
@@ -497,23 +469,40 @@
             <End Role="TST_SupportTickets" EntitySet="TST_SupportTickets" />
             <End Role="TST_TechNotes" EntitySet="TST_TechNotes" />
           </AssociationSet>
+          <EntitySet Name="TST_Departments" EntityType="TSTModel.TST_Departments" />
+          <AssociationSet Name="FK_TST_Employees_TST_Departments" Association="TSTModel.FK_TST_Employees_TST_Departments">
+            <End Role="TST_Departments" EntitySet="TST_Departments" />
+            <End Role="TST_Employees" EntitySet="TST_Employees" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TST_Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TST_Employees" Relationship="TSTModel.FK_TST_Employees_TST_Departments" FromRole="TST_Departments" ToRole="TST_Employees" />
+        </EntityType>
+        <Association Name="FK_TST_Employees_TST_Departments">
+          <End Type="TSTModel.TST_Departments" Role="TST_Departments" Multiplicity="0..1" />
+          <End Type="TSTModel.TST_Employees" Role="TST_Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TST_Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TST_Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TSTModelStoreContainer" CdmEntityContainer="TSTEntities">
-          <EntitySetMapping Name="TST_Departments">
-            <EntityTypeMapping TypeName="TSTModel.TST_Departments">
-              <MappingFragment StoreEntitySet="TST_Departments">
-                <ScalarProperty Name="DeparmentId" ColumnName="DeparmentId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TST_Employees">
             <EntityTypeMapping TypeName="TSTModel.TST_Employees">
               <MappingFragment StoreEntitySet="TST_Employees">
@@ -590,6 +579,16 @@
               <MappingFragment StoreEntitySet="TST_TicketStatuses">
                 <ScalarProperty Name="TicketStatusId" ColumnName="TicketStatusId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TST_Departments">
+            <EntityTypeMapping TypeName="TSTModel.TST_Departments">
+              <MappingFragment StoreEntitySet="TST_Departments">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

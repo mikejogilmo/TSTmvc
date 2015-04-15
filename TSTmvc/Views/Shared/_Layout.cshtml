@@ -161,39 +161,44 @@
                 <ul class="nav navbar-nav side-nav">
                     <li>
                         <a href="@Url.Action("Index", "Home")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        @*</li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#"><i class="fa fa-fw fa-table"></i> Tables</a>
                             </li>
-                        </ul>
-                    </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                            </li>*@
+
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href="@Url.Action("Index", "TST_Employees")"><i class="fa fa-fw fa-users"></i> Employees </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Index", "RolesAdmin")"><i class="fa fa-fw fa-users"></i> Role Management</a>
-                    </li>
+
+                    @if (User.IsInRole("HRAdmin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="demo" class="collapse">
+                                <li>
+                                    <a href="@Url.Action("Index", "TST_EmployeeStatuses")">Manage Statuses</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "TST_Departments")">Manage Departments</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "RolesAdmin")">Manage Roles</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -218,7 +223,9 @@
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+                            <i class="fa fa-info-circle"></i>
+                            <strong>Like SB Admin?</strong> Try out
+                            <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
                         </div>
                     </div>
                 </div>

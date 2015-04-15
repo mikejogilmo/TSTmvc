@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace TSTmvc.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "HRAdmin, SuperAdmin")]
     public class RolesAdminController : Controller
     {
         public RolesAdminController()
@@ -144,7 +144,7 @@ namespace TSTmvc.Controllers
             return View();
         }
 
-        //
+        [Authorize(Roles = "SuperAdmin")]
         // GET: /Roles/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
@@ -160,7 +160,7 @@ namespace TSTmvc.Controllers
             return View(role);
         }
 
-        //
+        [Authorize(Roles = "SuperAdmin")]
         // POST: /Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -19,7 +19,7 @@ namespace TST.Data.EF
             this.TST_Employees = new HashSet<TST_Employees>();
         }
     
-        public int DeparmentId { get; set; }
+        public int DepartmentId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; }

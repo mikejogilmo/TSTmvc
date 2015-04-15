@@ -25,12 +25,12 @@ namespace TST.Data.EF
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TST_Departments> TST_Departments { get; set; }
         public virtual DbSet<TST_Employees> TST_Employees { get; set; }
         public virtual DbSet<TST_EmployeeStatuses> TST_EmployeeStatuses { get; set; }
         public virtual DbSet<TST_SupportTickets> TST_SupportTickets { get; set; }
         public virtual DbSet<TST_TechNotes> TST_TechNotes { get; set; }
         public virtual DbSet<TST_TicketPriorities> TST_TicketPriorities { get; set; }
         public virtual DbSet<TST_TicketStatuses> TST_TicketStatuses { get; set; }
+        public virtual DbSet<TST_Departments> TST_Departments { get; set; }
     }
 }

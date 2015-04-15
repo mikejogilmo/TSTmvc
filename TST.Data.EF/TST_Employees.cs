@@ -45,11 +45,11 @@ namespace TST.Data.EF
         public Nullable<System.DateTime> HireDate { get; set; }
         public Nullable<System.DateTime> TerminationDate { get; set; }
     
-        public virtual TST_Departments TST_Departments { get; set; }
         public virtual TST_EmployeeStatuses TST_EmployeeStatuses { get; set; }
         public virtual ICollection<TST_SupportTickets> TST_SupportTickets { get; set; }
         public virtual ICollection<TST_SupportTickets> TST_SupportTickets1 { get; set; }
         public virtual ICollection<TST_SupportTickets> TST_SupportTickets2 { get; set; }
         public virtual ICollection<TST_TechNotes> TST_TechNotes { get; set; }
+        public virtual TST_Departments TST_Departments { get; set; }
     }
 }
