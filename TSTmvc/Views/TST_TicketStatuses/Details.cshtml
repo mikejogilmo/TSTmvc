@@ -1,0 +1,27 @@
+﻿@model TST.Data.EF.TST_TicketStatuses
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TST_TicketStatuses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TicketStatusId }) |
+    <button type="button" class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>
+</p>

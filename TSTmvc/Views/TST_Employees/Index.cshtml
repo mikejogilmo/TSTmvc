@@ -5,13 +5,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("HRAdmin"))
+{
+    <p>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
+    </p>
+}
+
+<fieldset style="margin-bottom:20px;">
+    @using (Html.BeginForm())
+    {
+        <div>
+            Search: @Html.TextBox("SearchText", null, new { placeholder = "Search by name or email" })
+
+            <br />
+
+            @Html.DropDownList("DepartmentId", "Search By Dept")
+
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    }
+</fieldset>
+
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoUrl)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FullName)
         </th>
@@ -31,9 +53,10 @@
 
     @foreach (var item in Model)
     {
+        var photo = (item.PhotoUrl == null) ? "no-image.jpg" : item.PhotoUrl;
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PhotoUrl)
+                <img id="img" src="~/Content/EmployeePhotos/@item.PhotoUrl" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FullName)
@@ -51,7 +74,7 @@
                 @Html.DisplayFor(modelItem => item.TST_EmployeeStatuses.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.EmployeeId })
+                <button type="button" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.EmployeeId })</button>
             </td>
         </tr>
     }

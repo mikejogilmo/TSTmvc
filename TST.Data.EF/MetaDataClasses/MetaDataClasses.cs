@@ -11,6 +11,9 @@ namespace TST.Data.EF
 
     public class EmployeeStatusMetaData
     {
+        [Display(Name = "Status")]
+        public int EmployeeStatusId { get; set; }
+
         [Required(ErrorMessage = "Please enter a status name")]
         [Display(Name = "Employee Status")]
         [StringLength(50, ErrorMessage = "Can not exceed 50 characters")]
@@ -27,11 +30,13 @@ namespace TST.Data.EF
 
     public class DepartmentMetaData
     {
+        [Display(Name="Department")]
+        public int DepartmentId { get; set; }
+
         [Required(ErrorMessage = "Please enter a department name")]
         [Display(Name = "Department Name")]
         [StringLength(100, ErrorMessage = "Can not exceed 100 characters")]
         public string Name { get; set; }
-
 
         [Required(ErrorMessage = "* Required")]
         [Display(Name = "Is Active?")]
@@ -44,14 +49,16 @@ namespace TST.Data.EF
     #endregion
 
 
-    #region Employee Meta Data
+    #region Employees Meta Data
 
-    public class EmployeeMetaData
+    public class EmployeesMetaData
     {
         [Required(ErrorMessage = "* Required")]
+        [Display(Name="First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "* Required")]
@@ -60,21 +67,25 @@ namespace TST.Data.EF
 
         [Required(ErrorMessage = "* Required")]
         [RegularExpression(@"^\+?\(?\d+\)?(\s|\-|\.)?\d{1,3}(\s|\-|\.)?\d{4}$", ErrorMessage = " Use the form (555) 555-5555")]
+        [Display(Name = "Cell Phone")]
         public string CellPhone { get; set; }
+
+        [RegularExpression(@"^\+?\(?\d+\)?(\s|\-|\.)?\d{1,3}(\s|\-|\.)?\d{4}$", ErrorMessage = " Use the form (555) 555-5555")]
+        [Display(Name = "Work Phone")]
+        public string WorkPhone { get; set; }
 
         [Display(Name = "Photo")]
         public string PhotoUrl { get; set; }
 
         [Required(ErrorMessage = "* Required")]
-        [Display(Name = "Status?")]
+        [Display(Name = "Status")]
         public int StatusId { get; set; }
 
-        [Required(ErrorMessage = "* Required")]
+        //[Required(ErrorMessage = "* Required")]
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
-        [Required(ErrorMessage = "* Required")]
-        [StringLength(40, ErrorMessage = "can not be over 40 characters")]
+        //[Required(ErrorMessage = "* Required")]
         [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
 
@@ -91,9 +102,16 @@ namespace TST.Data.EF
         [StringLength(100, ErrorMessage = "can not be over 100 characters")]
         [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
+
+        [StringLength(2, ErrorMessage="Please enter a 2 letter abbreviation")]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Display(Name = "Hire Date")]
+        public DateTime HireDate { get; set; }
     }
 
-    [MetadataType(typeof(EmployeeMetaData))]
+    [MetadataType(typeof(EmployeesMetaData))]
     public partial class TST_Employees
     {
         [Display(Name = "Full Name")]
@@ -115,4 +133,85 @@ namespace TST.Data.EF
     }
 
     #endregion
+
+
+    #region Support Ticket Meta Data
+
+    public class SupportTicketsMetaData
+    {
+        [Display(Name = "Submitted By")]
+        public int SubmittedByEmployeeId { get; set; }
+
+        [Display(Name="Tech Assigned")]
+        public int TechId { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Subject")]
+        [StringLength(50, ErrorMessage = "Can not exceed 50 characters")]
+        public string Subject { get; set; }
+
+        [Display(Name = "Date Submitted")]
+        public DateTime DateSubmitted { get; set; }
+
+        [Display(Name = "Status")]
+        public int StatusId { get; set; }
+
+        [Display(Name = "Date Closed")]
+        public DateTime DateClosed { get; set; }
+    }
+    [MetadataType(typeof(SupportTicketsMetaData))]
+    public partial class TST_SupportTickets { }
+
+    #endregion
+
+
+    #region Ticket Priorities Meta Data
+
+    public class TicketPrioritiesMetaData
+    {
+        [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Priority Level")]
+        [StringLength(20, ErrorMessage = "Can not exceed 20 characters")]
+        public string Name { get; set; }
+    }
+    [MetadataType(typeof(TicketPrioritiesMetaData))]
+    public partial class TST_TicketPriorities { }
+
+
+    #endregion
+
+
+    #region Ticket Statuses Meta Data
+
+    public class TicketStatusesMetaData
+    {
+        [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Status")]
+        [StringLength(20, ErrorMessage = "Can not exceed 20 characters")]
+        public string Name { get; set; }
+    }
+    [MetadataType(typeof(TicketStatusesMetaData))]
+    public partial class TST_TicketStatuses { }
+
+    #endregion
+
+
+    #region Tech Notes Meta Data
+
+    public class TechNotesMetaData
+    {
+        [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Notes")]
+        [StringLength(3000, ErrorMessage = "Can not exceed 3000 characters")]
+        public string Note { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
+        [Display(Name = "Date Submitted")]
+        public DateTime NoteSubmittedOn { get; set; }
+    }
+    [MetadataType(typeof(TechNotesMetaData))]
+    public partial class TST_TechNotes { }
+
+    #endregion
+
 }

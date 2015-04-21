@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<TSTmvc.Models.ApplicationUser>
-
+@using TSTmvc.Models
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Users in Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
 <table class="table">
     <tr>
@@ -15,7 +15,6 @@
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-
         </th>
     </tr>
 
@@ -26,9 +25,8 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>
             </td>
         </tr>
     }

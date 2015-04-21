@@ -5,19 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Departments</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
+
+@* Show inactive departments auto postback checkbox *@
+@using (Html.BeginForm())
+{
+    <div>
+        Show Inactive Departments @Html.CheckBox("ShowInactive", new { onchange = "document.forms[0].submit()"})
+    </div>
+}
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
@@ -29,16 +38,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Description)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentId })
+            <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.DepartmentId })</button>
+            <button type="button" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.DepartmentId })</button>
+            <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.DepartmentId })</button>
         </td>
     </tr>
 }

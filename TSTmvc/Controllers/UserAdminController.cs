@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace TSTmvc.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SuperAdmin, HRAdmin")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
@@ -153,7 +153,7 @@ namespace TSTmvc.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {

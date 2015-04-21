@@ -16,9 +16,11 @@ namespace TSTmvc.Controllers
         private TSTEntities db = new TSTEntities();
 
         // GET: TST_Departments
-        public ActionResult Index()
+        public ActionResult Index(bool showInactive = false)
         {
-            return View(db.TST_Departments.ToList());
+            //add below line for soft delete
+            var tST_Departments = db.TST_Departments.Include(t => t.TST_Employees).Where(x => x.IsActive == !showInactive);
+            return View(tST_Departments.ToList());
         }
 
         // GET: TST_Departments/Details/5
@@ -113,7 +115,7 @@ namespace TSTmvc.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TST_Departments tST_Departments = db.TST_Departments.Find(id);
-            db.TST_Departments.Remove(tST_Departments);
+            tST_Departments.IsActive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

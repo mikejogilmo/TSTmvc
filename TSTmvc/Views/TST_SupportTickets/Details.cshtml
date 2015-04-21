@@ -1,0 +1,98 @@
+﻿@model TST.Data.EF.TST_SupportTickets
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Support Ticket Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @if (Model.Description == null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+        }
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateSubmitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateSubmitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedByEmployeeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TST_Employees.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TST_Employees1.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TST_TicketPriorities.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TST_TicketPriorities.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TST_TicketStatuses.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TST_TicketStatuses.Name)
+        </dd>
+
+        @if (Model.DateClosed != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.DateClosed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateClosed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CancelledBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TST_Employees2.FullName)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.TicketId })</button>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>
+</p>
