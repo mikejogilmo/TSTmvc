@@ -15,8 +15,6 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.TicketId)
-        @*@Html.HiddenFor(model => model.CancelledBy)
-            @Html.HiddenFor(model => model.DateClosed)*@
         @Html.HiddenFor(model => model.Description)
         @Html.HiddenFor(model => model.Subject)
         @Html.HiddenFor(model => model.DateSubmitted)
@@ -33,14 +31,21 @@
         @if ((User.IsInRole("SuperAdmin")) || User.IsInRole("TechAdmin"))
         {
             <div class="form-group">
-                @Html.LabelFor(model => model.TechId, "TechId", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TechId, "Tech Assigned", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("TechId", null, " ", htmlAttributes: new { @class = "form-control" })
+                    @if (Model.TST_Employees1 != null)
+                    {
+                        @Html.DropDownList("TechId", null, Model.TST_Employees1.FullName, htmlAttributes: new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.DropDownList("TechId", null, "Unassigned", htmlAttributes: new { @class = "form-control" })
+                    }
                     @Html.ValidationMessageFor(model => model.TST_Employees1.FullName, "", new { @class = "text-danger" })
                 </div>
             </div>
         }
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -102,7 +107,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PriorityId, "PriorityId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PriorityId, "Priority Level", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("PriorityId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PriorityId, "", new { @class = "text-danger" })
@@ -110,28 +115,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StatusId, "StatusId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.CancelledBy, "CancelledBy", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("CancelledBy", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CancelledBy, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.DateClosed, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateClosed, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DateClosed, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

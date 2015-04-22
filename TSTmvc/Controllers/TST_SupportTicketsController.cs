@@ -17,7 +17,7 @@ namespace TSTmvc.Controllers
         private TSTEntities db = new TSTEntities();
 
         // GET: TST_SupportTickets
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
             var tST_SupportTickets = db.TST_SupportTickets.Include(t => t.TST_Employees).Include(t => t.TST_Employees1).Include(t => t.TST_Employees2).Include(t => t.TST_TicketPriorities).Include(t => t.TST_TicketStatuses);
             //return View(tST_SupportTickets.ToList());
@@ -30,7 +30,7 @@ namespace TSTmvc.Controllers
             if (User.IsInRole("Tech"))
             {
 
-                //supportTickets = supportTickets.Where(t=> t.SubmitedBy == employee.EmployeeId || t.TechId == employee.EmployeeId);
+                //supportTickets = supportTickets.Where(t=> t.SubmittedBy == employee.EmployeeId || t.TechId == employee.EmployeeId);
 
                 tST_SupportTickets = from t in tST_SupportTickets
                                      where t.SubmittedByEmployeeId == employee.EmployeeId ||
@@ -210,7 +210,7 @@ namespace TSTmvc.Controllers
         {
             //get the ticket
             TST_SupportTickets ticket = db.TST_SupportTickets.FirstOrDefault(x => x.TicketId == ticketId);
-            
+
             //get the tech employee
             TST_Employees tech = db.TST_Employees.ToList().FirstOrDefault(x => x.UserId == User.Identity.GetUserId());
 

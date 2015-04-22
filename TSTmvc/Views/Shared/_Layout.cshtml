@@ -119,11 +119,11 @@
                             <ul class="dropdown-menu alert-dropdown">
 
                                 <li>
-                                    <a href=""><span class="label label-danger">Assigned Tickets: employee.TST_SupportTickets1.Where(x => x.StatusId == 1).Count()</span></a>
+                                    <a href=""><span class="message-dropdown">Assigned Tickets: @employee.TST_SupportTickets1.Where(x => x.StatusId == 1).Count()</span></a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#">View All</a>
+                                    <a href="~/TST_SupportTickets">View All</a>
                                 </li>
                             </ul>
                         </li>
@@ -135,7 +135,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-fw fa-user"></i> @User.Identity.Name <b class="caret"></b>
+                                <i class="fa fa-fw fa-user"></i> @employee.FullName <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -186,19 +186,19 @@
                     @if (User.IsInRole("HRAdmin") || User.IsInRole("SuperAdmin"))
                     {
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Manage <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="@Url.Action("Index", "UsersAdmin")">Users</a>
-                                </li>
                                 <li>
                                     <a href="@Url.Action("Index", "TST_Departments")">Departments</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "TST_EmployeeStatuses")">Statuses</a>
+                                    <a href="@Url.Action("Index", "UsersAdmin")">Users</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index", "RolesAdmin")">Roles</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "TST_EmployeeStatuses")">Statuses</a>
                                 </li>
                             </ul>
                         </li>
@@ -246,9 +246,9 @@
     </div>
     <!-- /#wrapper -->
 
-    @*<script>
-            $('.datepicker').datepicker()
-        </script>*@
+    <script>
+
+    </script>
 
     <!-- Morris Charts JavaScript -->
     <script src="~/Scripts/plugins/morris/raphael.min.js"></script>

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TSTmvc.Models.ApplicationUser>
-@using TSTmvc.Models
+
 @{
     ViewBag.Title = "Index";
 }
@@ -23,6 +23,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+
             </td>
             <td>
                 <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>

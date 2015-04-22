@@ -47,13 +47,16 @@
             @Html.DisplayFor(model => model.TST_Employees.FullName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TechId)
-        </dt>
+        @if (Model.TechId != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.TechId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TST_Employees1.FullName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TST_Employees1.FullName)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.TST_TicketPriorities.Name)

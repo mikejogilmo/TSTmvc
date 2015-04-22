@@ -10,6 +10,7 @@
 <p>
     <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -37,7 +38,6 @@
     {
         if (item.TST_Employees.Email == User.Identity.Name)
         {
-
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Subject)
@@ -52,7 +52,7 @@
                     @Html.DisplayFor(modelItem => item.TST_Employees1.FullName)
                     @if (item.TechId == null)
                     {
-                        <span>Not Assigned</span>
+                        <span>Unassigned</span>
                     }
                 </td>
 

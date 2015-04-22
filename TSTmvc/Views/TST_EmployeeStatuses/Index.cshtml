@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Employee Statuses</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,14 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeStatusId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeStatusId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeStatusId })
+            @if (item.TST_Employees.Count() == 0)
+            {
+                <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeStatusId })</button>
+            }
+            else
+            {
+                @item.TST_Employees.Count()<span> Employees</span>
+            }
         </td>
     </tr>
 }

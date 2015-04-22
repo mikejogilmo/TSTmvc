@@ -9,6 +9,7 @@
 <p>
     <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -26,11 +27,14 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
-
+               
                 @if (item.Users.Count() == 0)
                 {
                     <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>
+                }
+                else
+                {
+                    @item.Users.Count()<span> Employees</span>
                 }
             </td>
         </tr>
