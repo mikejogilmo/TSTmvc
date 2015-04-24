@@ -91,9 +91,10 @@ namespace TST.Data.EF
 
         [Required(ErrorMessage = "* Required")]
         [RegularExpression(@"(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])", ErrorMessage = "Please use a proper SSN")]
-        [Display(Name = "Social Security Number")]
+        [Display(Name = "SSN")]
         public string SSN { get; set; }
 
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "* Required")]
         [Display(Name = "Date of Birth")]
         public DateTime DateOfBirth { get; set; }
@@ -107,6 +108,7 @@ namespace TST.Data.EF
         [Display(Name = "State")]
         public string State { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Hire Date")]
         public DateTime HireDate { get; set; }
     }

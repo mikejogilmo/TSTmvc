@@ -26,5 +26,12 @@ namespace TSTmvc.Controllers
 
             return View();
         }
+
+        public ActionResult Sales()
+        {
+            ViewBag.Message = "Sales.";
+
+            return View();
+        }
     }
 }

@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="MetaDataClasses\MetaDataClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\TicketResults.cs" />
     <Compile Include="TST.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

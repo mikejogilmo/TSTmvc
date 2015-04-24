@@ -8,20 +8,19 @@
 <h2>@Model.FullName</h2>
 <h4>@Html.DisplayFor(model => model.JobTitle)</h4>
 <div>
-
     <hr />
-    <dl class="dl-horizontal">
-
-        <dd>
-            <img id="img" src="~/Content/EmployeePhotos/@Model.PhotoUrl" />
-        </dd>
-
+    <div>
+        <img class="img-thumbnail img-pushright" src="~/Content/EmployeePhotos/@Model.PhotoUrl" />
+    </div>
+    <br />
+    <dl class="dl-horizontal pushright">
+        
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            <a href="mailto:@Html.DisplayFor(model => model.Email)" target="_top">@Html.DisplayFor(model => model.Email)</a>
         </dd>
 
         <dt>
@@ -136,6 +135,7 @@
 
     </dl>
 </div>
+<div class="clearfix"></div>
 <p>
     <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId })</button>
     <button type="button" class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>

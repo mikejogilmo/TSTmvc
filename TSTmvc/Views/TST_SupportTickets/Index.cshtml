@@ -1,42 +1,44 @@
 ﻿@model IEnumerable<TST.Data.EF.TST_SupportTickets>
+@using TSTmvc.Enums;
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@if (User.IsInRole("Tech"))
+{
+    <h2>Assigned Support Tickets</h2>
+}
 <h2>Support Tickets</h2>
 <p>
     <button type="button" class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
 </p>
+<div class="mygrid-wrapper-div">
+    <table class="table table-responsive table-condensed table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.ActionLink("Date Submitted", "Index", "TST_SupportTickets", new { sortOrder = TicketSortOrderEnum.DateSubmitted.ToString() }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Submitted By", "Index", "TST_SupportTickets", new { sortOrder = TicketSortOrderEnum.SubmittedByEmployeeId.ToString() }, null)
+            </th>
+            @*<th>
+                    @Html.ActionLink("Tech Assigned", "Index", "TST_SupportTickets", new { sortOrder = TicketSortOrderEnum.TechId.ToString() }, null)
+                </th>*@
+            <th>
+                @Html.ActionLink("Priority Level", "Index", "TST_SupportTickets", new { sortOrder = TicketSortOrderEnum.PriorityId.ToString() }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Status", "Index", "TST_SupportTickets", new { sortOrder = TicketSortOrderEnum.StatusId.ToString() }, null)
+            </th>
+            <th></th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateSubmitted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubmittedByEmployeeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TechId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TST_TicketPriorities.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TST_TicketStatuses.Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        if (item.TST_Employees.Email == User.Identity.Name)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -48,13 +50,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TST_Employees.FullName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TST_Employees1.FullName)
-                    @if (item.TechId == null)
-                    {
-                        <span>Unassigned</span>
-                    }
-                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TST_Employees1.FullName)
+                        @if (item.TechId == null)
+                        {
+                            <span>Unassigned</span>
+                                    }
+                    </td>*@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.TST_TicketPriorities.Name)
@@ -63,78 +65,100 @@
                     @Html.DisplayFor(modelItem => item.TST_TicketStatuses.Name)
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.TicketId })</button>
-
+                    @if (User.IsInRole("Tech"))
+                    {
+                        <button type="submit" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.TicketId })</button>
+                    }
                     <button type="submit" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.TicketId })</button>
+
                 </td>
             </tr>
         }
-    }
 
-</table>
-
-@if ((User.IsInRole("Tech")) || User.IsInRole("TechAdmin"))
-{
-    <h2>Assigned Support Tickets</h2>
-
-    <table class="table">
-
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateSubmitted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubmittedByEmployeeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TechId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TST_TicketPriorities.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TST_TicketStatuses.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if (item.TST_Employees.Email != User.Identity.Name)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Subject)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateSubmitted)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TST_Employees.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TST_Employees1.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TST_TicketPriorities.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TST_TicketStatuses.Name)
-                    </td>
-                    <td>
-                        @if (item.DateClosed != null)
-                        {
-                            <button type="submit" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.TicketId })</button>
-
-                        }
-                        <button type="submit" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.TicketId })</button>
-                    </td>
-                </tr>
-
-            }
-        }
     </table>
+</div>
+@*@if ((User.IsInRole("Tech")) || User.IsInRole("TechAdmin"))
+    {
+        <h2>Assigned Support Tickets</h2>
+
+        <table class="table table-responsive table-striped">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateSubmitted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubmittedByEmployeeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TechId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TST_TicketPriorities.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TST_TicketStatuses.Name)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.TST_Employees.Email != User.Identity.Name)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateSubmitted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TST_Employees.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TST_Employees1.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TST_TicketPriorities.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TST_TicketStatuses.Name)
+                        </td>
+                        <td>
+                            @if (item.DateClosed != null)
+                            {
+                                <button type="submit" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.TicketId })</button>
+
+                            }
+                            <button type="submit" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.TicketId })</button>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </table>
+
+
+    }*@
+
+@section scripts {
+
+    <script>
+        $(function () {
+            var window_height = $(window).height(),
+               content_height = window_height - 300;
+
+            $('.mygrid-wrapper-div').height(content_height);
+        });
+
+        $(window).resize(function () {
+            var window_height = $(window).height(),
+               content_height = window_height - 300;
+            $('.mygrid-wrapper-div').height(content_height);
+        });
+    </script>
 }

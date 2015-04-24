@@ -123,7 +123,7 @@ namespace TSTmvc.Models
     public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext> 
     {
         protected override void Seed(ApplicationDbContext context) {
-            InitializeIdentityForEF(context);
+            //InitializeIdentityForEF(context);
             base.Seed(context);
         }
 

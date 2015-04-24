@@ -1,6 +1,21 @@
-﻿body {
-
+﻿@font-face {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans+Condensed:300|Raleway);
+
+body {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.mygrid-wrapper-div {
+    border: 2px solid #999;
+    overflow: scroll;
+    height: 400px;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -26,7 +41,137 @@ textarea {
     width: 10em;
 }
 
-#img {
-    width: 7em;
-    height: auto;
+.empIndex {
+    height: 22em;
+    margin: 0 auto;
+}
+
+
+.notice {
+    color: red;
+}
+
+/*.alerts {
+    display: none;
+}*/
+
+th {
+    background: #d9edf7;
+    border-bottom: solid 2px #d2d2d2;
+}
+
+ul.nav.navbar-nav.side-nav {
+    border-right: 2px #999 solid;
+}
+
+.navbar.inverse .navbar-nav > li:hover {
+    background: #15384e;
+}
+
+.img-pushright {
+    margin-left: 4%;
+}
+
+dt {
+    margin: .2em;
+    padding-right: 1em;
+    background: #eceaea;
+    text-align: center;
+    border-bottom: 2px solid #999;
+}
+
+.pushtop {
+    margin-top: 2em;
+    padding-bottom: 2em;
+}
+
+
+#noteText {
+    resize: none;
+    height: 10em;
+    width: 100%;
+}
+
+#btnAddNote {
+    margin-left: 17em;
+}
+
+textarea#Description {
+    resize: none;
+    width: 100%;
+    height: 10em;
+}
+
+select#DepartmentId {
+    margin: 0 2em;
+}
+
+input#DateOfBirth {
+    width: 100%;
+}
+
+input#HireDate {
+    width: 100%;
+}
+
+select#DepartmentId.depart {
+    margin: 0;
+}
+
+.row {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.92);
+    border: 5px solid #d2d2d2;
+}
+
+div.pushtop {
+    margin-top: 5em;
+    /*padding-top: 1em;*/
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    padding-top: .5em;
+    bottom: 0;
+    left: 0;
+    background: #15384e;
+    color: #fff;
+    border-top: 1px solid black;
+}
+
+.login {
+    width: 50%;
+}
+
+.welcome {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 5em;
+}
+
+.para {
+    font-size: 3em;
+    letter-spacing: .8em;
+}
+
+.img-resize {
+    display: inline-block;
+    height: 10em;
+}
+
+span.icon-bar {
+    background: #15384e;
+}
+
+button.navbar-toggle {
+    background: #fff;
+}
+
+@media (max-width: 767px) {
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
 }

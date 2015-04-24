@@ -24,6 +24,12 @@ namespace TSTmvc
             // Configure the sign in cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
+                //logs off user after 30 days
+                ExpireTimeSpan = TimeSpan.FromDays(30),
+
+                //starts 30 days over everytime user gets on computer
+                SlidingExpiration = true,
+
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider

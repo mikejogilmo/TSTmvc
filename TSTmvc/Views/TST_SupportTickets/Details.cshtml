@@ -96,6 +96,9 @@
     </dl>
 </div>
 <p>
-    <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.TicketId })</button>
+    @if ((User.IsInRole("Tech")) || (User.IsInRole("TechAdmin")) || (User.IsInRole("SuperAdmin")))
+    {
+        <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.TicketId })</button>
+    }
     <button type="button" class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>
 </p>

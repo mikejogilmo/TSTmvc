@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using TST.Data.EF;
 using Microsoft.AspNet.Identity;
+using TSTmvc.Enums;
+using PagedList.Mvc;
+using TST.Data.EF.Results;
+
 
 namespace TSTmvc.Controllers
 {
@@ -16,10 +20,13 @@ namespace TSTmvc.Controllers
     {
         private TSTEntities db = new TSTEntities();
 
+
         // GET: TST_SupportTickets
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(TicketSortOrderEnum sortOrder = TicketSortOrderEnum.PriorityId, int? page = 1)
         {
-            var tST_SupportTickets = db.TST_SupportTickets.Include(t => t.TST_Employees).Include(t => t.TST_Employees1).Include(t => t.TST_Employees2).Include(t => t.TST_TicketPriorities).Include(t => t.TST_TicketStatuses);
+            ViewBag.CurrentSort = sortOrder;
+
+            var tST_SupportTickets = db.TST_SupportTickets.Include(t => t.TST_Employees).Include(t => t.TST_Employees1).Include(t => t.TST_Employees2).Include(t => t.TST_TicketPriorities).Include(t => t.TST_TicketStatuses);//.Where(x=>x.StatusId == 4 || x.StatusId == 2)
             //return View(tST_SupportTickets.ToList());
 
             //get the employee for the current user
@@ -44,7 +51,29 @@ namespace TSTmvc.Controllers
                                      select t;
             }
 
-            return View(tST_SupportTickets.ToList());
+            List<TST_SupportTickets> results = null;
+            switch (sortOrder)
+            {
+                case TicketSortOrderEnum.PriorityId:
+                    results = tST_SupportTickets.OrderByDescending(x => x.PriorityId).ToList();
+                    break;
+                case TicketSortOrderEnum.StatusId:
+                    results = tST_SupportTickets.OrderBy(x => x.StatusId).ToList();
+                    break;
+                case TicketSortOrderEnum.DateSubmitted:
+                    results = tST_SupportTickets.OrderBy(x => x.DateSubmitted).ToList();
+                    break;
+                case TicketSortOrderEnum.TechId:
+                    results = tST_SupportTickets.OrderBy(x => x.TechId).ToList();
+                    break;
+                case TicketSortOrderEnum.SubmittedByEmployeeId:
+                    results = tST_SupportTickets.OrderBy(x => x.SubmittedByEmployeeId).ToList();
+                    break;
+            }
+
+            //var ticketCount = employee.TST_SupportTickets1.Where(x => x.StatusId == 1).Count();
+
+            return View(results);
         }
 
         // GET: TST_SupportTickets/Details/5

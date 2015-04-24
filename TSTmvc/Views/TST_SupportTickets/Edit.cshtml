@@ -67,6 +67,7 @@
             </div>
         </div>
         <div>
+            <hr />
             <h3>Tech Notes</h3>
             <div id="notes">
                 @*Display all of the current notes on the ticket*@
@@ -75,13 +76,14 @@
                     <p>@note.TechNoteId by @note.TST_Employees.FullName on @String.Format("{0:D}", note.NoteSubmittedOn)</p>
                 }
             </div>
+            <br />
 
             @*Add a text area and a  button to get the note from the user*@
             <fieldset>
-                <legend>Add Tech Note</legend>
                 <p>Note: <textarea id="noteText"></textarea></p>
                 <input type="button" id="btnAddNote" value="Add Note" />
             </fieldset>
+            <hr />
             <script>
                 $(function () {
 
@@ -124,7 +126,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" id="alert" class="btn btn-default" />
             </div>
         </div>
     </div>
